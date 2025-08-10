@@ -1,47 +1,52 @@
-name: Build DITA Docs
+name: Deploy WordPress to GitHub Pages
 
 on:
   push:
     branches:
-      - main
-  workflow_dispatch:
+      - main   # Change to your default branch name
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
 
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout repository
+      - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Set up Java
-        uses: actions/setup-java@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
         with:
-          java-version: '11'
-          distribution: 'temurin'
+          node-version: '20' # or your preferred Node version
+          cache: 'npm'
 
-      - name: Download DITA-OT 4.3.4
-        run: |
-          curl -L https://github.com/dita-ot/dita-ot/releases/download/4.3.4/dita-ot-4.3.4.zip -o dita-ot.zip
-          unzip dita-ot.zip
-          mv dita-ot-4.3.4 dita-ot
+      - name: Install dependencies
+        run: npm install
 
-      - name: Build HTML
-        run: |
-          ./dita-ot/bin/dita \
-            --input=your-map-file.ditamap \
-            --format=html5 \
-            --output=output/html
+      - name: Build static site
+        run: npm run build
+        env:
+          NODE_ENV: production
 
-      - name: Build PDF
-        run: |
-          ./dita-ot/bin/dita \
-            --input=your-map-file.ditamap \
-            --format=pdf \
-            --output=output/pdf
-
-      - name: Upload HTML & PDF Artifacts
-        uses: actions/upload-artifact@v4
+      - name: Upload build artifact
+        uses: actions/upload-pages-artifact@v3
         with:
-          name: DITA-Build
-          path: output/
+          path: ./dist  # Change to your build output folder
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
