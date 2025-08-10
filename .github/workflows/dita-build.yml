@@ -1,0 +1,47 @@
+name: Build DITA Docs
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          java-version: '11'
+          distribution: 'temurin'
+
+      - name: Download DITA-OT 4.3.4
+        run: |
+          curl -L https://github.com/dita-ot/dita-ot/releases/download/4.3.4/dita-ot-4.3.4.zip -o dita-ot.zip
+          unzip dita-ot.zip
+          mv dita-ot-4.3.4 dita-ot
+
+      - name: Build HTML
+        run: |
+          ./dita-ot/bin/dita \
+            --input=your-map-file.ditamap \
+            --format=html5 \
+            --output=output/html
+
+      - name: Build PDF
+        run: |
+          ./dita-ot/bin/dita \
+            --input=your-map-file.ditamap \
+            --format=pdf \
+            --output=output/pdf
+
+      - name: Upload HTML & PDF Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: DITA-Build
+          path: output/
