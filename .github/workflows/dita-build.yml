@@ -1,0 +1,34 @@
+name: Build DITA Docs
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Install DITA-OT
+      run: |
+        wget https://github.com/dita-ot/dita-ot/releases/download/4.2.3/dita-ot-4.2.3.zip
+        unzip dita-ot-4.2.3.zip
+        mv dita-ot-4.2.3 dita-ot
+
+    - name: Build HTML5
+      run: |
+        ./dita-ot/bin/dita --input=my-doc.ditamap --format=html5 --output=out/html
+
+    - name: Build PDF
+      run: |
+        ./dita-ot/bin/dita --input=my-doc.ditamap --format=pdf --output=out/pdf
+
+    - name: Upload Artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: dita-output
+        path: out
