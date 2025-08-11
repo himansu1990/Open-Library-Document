@@ -1,0 +1,41 @@
+name: Build DITA
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          java-version: '11'
+          distribution: 'temurin'
+
+      - name: Install DITA-OT
+        run: |
+          wget https://github.com/dita-ot/dita-ot/releases/download/4.3.4/dita-ot-4.3.4.zip
+          unzip dita-ot-4.3.4.zip
+
+      - name: Build HTML
+        run: ./dita-ot-4.3.4/bin/dita -i guide.ditamap -f html5 -o out/html
+
+      - name: Build PDF
+        run: ./dita-ot-4.3.4/bin/dita -i guide.ditamap -f pdf -o out/pdf
+
+      - name: Upload HTML artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: html-output
+          path: out/html
+
+      - name: Upload PDF artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: pdf-output
+          path: out/pdf
