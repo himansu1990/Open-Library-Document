@@ -91,7 +91,7 @@ The API is free for both commercial and non-commercial usage.
 | Name | Type | Required | Description | Example |
 |------|------|----------|-------------|--------|
 |q     | string | Yes    | Search(author) | q=twain |
-|      |        |        |              |          | 
+
 
 **Example requests:**
 
