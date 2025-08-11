@@ -1,18 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<books id="books-01">
+<topic id="books">
 <title>Open Library Book Collections API</title>
 <shortdesc>Getting started with Open Library Book Collections API</shortdesc>
-<bookbody>
-<h2>Overview</h2>
+<body>
+<p><b>Overview</b></p>
 <p>The Open Library Book Collections API provides access to a wide range of book collections available on the Open Library platform. This API allows users to search for books, retrieve details about specific books, and explore various collections.</p>
-<h2>Frequently Asked Questions</h2>
-<h3>Do you need an API key to use the Open Library Book Collections API?</h3>
+<p><b>Frequently Asked Questions</b></p>
+<p><b>Do you need an API key to use the Open Library Book Collections API?</b></p>
 <p>No, you do not need an API key to use the Open Library Book Collections API. The API is designed to be open and accessible to everyone.</p>
-<h3>Do I need to register to use the Open Library Book Collections API?</h3>
+<p><b>Do I need to register to use the Open Library Book Collections API?</b></p>
 <p>No registration is required to use the Open Library Book Collections API. You can start using it immediately without any setup.</p>
-<h3>Is the Open Library Book Collections API free to use?</h3>     
+<p><b>Is the Open Library Book Collections API free to use?</b></p>     
 <p>The API is free for both commercial and non-commercial usage. 
 </p>
-</bookbody>
+</body>
 
-</books>
+</topic>
+
