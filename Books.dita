@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE Books PUBLIC "OASIS//DTD//DITA Books/EN" "Open Library API/Books.dtd">
 <books id="books-01">
 <title>Open Library Book Collections API</title>
 <shortdesc>Getting started with Open Library Book Collections API</shortdesc>
@@ -15,4 +14,5 @@
 <p>The API is free for both commercial and non-commercial usage. 
 </p>
 </bookbody>
+
 </books>
