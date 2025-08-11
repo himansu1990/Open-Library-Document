@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE map PUBLIC "-//OASIS//DTD DITA Map//EN" "map.dtd">
 <map title="Open Library API Guide" id="guide.ditamap">
-<topicref href="Books.dita" format="dita" type="book" navtitle="Open Library Book Collections API"/>
-
-  </map>
-
+    <topicref href="Books.dita" format="dita" type="topic" navtitle="Open Library Book Collections API"/>
+</map>
