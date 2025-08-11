@@ -1,19 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<topic id="books">
-<title>Open Library Book Collections API</title>
-<shortdesc>Getting started with Open Library Book Collections API</shortdesc>
-<body>
-<p><b>Overview</b></p>
-<p>The Open Library Book Collections API provides access to a wide range of book collections available on the Open Library platform. This API allows users to search for books, retrieve details about specific books, and explore various collections.</p>
-<p><b>Frequently Asked Questions</b></p>
-<p><b>Do you need an API key to use the Open Library Book Collections API?</b></p>
-<p>No, you do not need an API key to use the Open Library Book Collections API. The API is designed to be open and accessible to everyone.</p>
-<p><b>Do I need to register to use the Open Library Book Collections API?</b></p>
-<p>No registration is required to use the Open Library Book Collections API. You can start using it immediately without any setup.</p>
-<p><b>Is the Open Library Book Collections API free to use?</b></p>     
-<p>The API is free for both commercial and non-commercial usage. 
-</p>
-</body>
-
+<!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic id="Books">
+  <title>Open Library Book Collections API</title>
+  <shortdesc>Getting started with Open Library Book Collections API</shortdesc>
+  <body>
+    <section id="overview">
+      <title>Overview</title>
+      <p>The Open Library Book Collections API provides access to a wide range of book collections available on the Open Library platform. This API allows users to search for books, retrieve details about specific books, and explore various collections.</p>
+    </section>
+    <section id="faq">
+      <title>Frequently Asked Questions</title>
+      <dl>
+        <dlentry>
+          <dt>Do you need an API key to use the Open Library Book Collections API?</dt>
+          <dd>No, you do not need an API key to use the Open Library Book Collections API. The API is designed to be open and accessible to everyone.</dd>
+        </dlentry>
+        <dlentry>
+          <dt>Do I need to register to use the Open Library Book Collections API?</dt>
+          <dd>No registration is required to use the Open Library Book Collections API. You can start using it immediately without any setup.</dd>
+        </dlentry>
+        <dlentry>
+          <dt>Is the Open Library Book Collections API free to use?</dt>
+          <dd>The API is free for both commercial and non-commercial usage.</dd>
+        </dlentry>
+      </dl>
+    </section>
+  </body>
 </topic>
-
