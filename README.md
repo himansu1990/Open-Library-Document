@@ -1,7 +1,5 @@
 # Open-Library-Document
 
-Getting started with Open Library Book Collections API
-
 ## Overview
 
 Open Library has a wide range of public APIs that help developers to access data related to books that include metadata, search results, author information, and more. 
