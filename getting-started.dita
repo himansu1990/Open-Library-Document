@@ -1,12 +1,284 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topi.dtd">
 <topic id="getting_started">
-<title>Getting strated</title>
-<shortdesc>Getting strated with Open Library API</shortdesc>
+<title>Getting started</title>
+<shortdesc>Getting started with Open Library API</shortdesc>
 <body>
 <section id="base_url">
-<title>Base URL</title>
+<title>1. Base URL</title>
+<p>
+<codeblock id="codeblock_dz2_jmr_3gc">https://openlibrary.org</codeblock>
+</p>
 </section>
+<section id="section_csz_nmr_3gc">
+<title>2. <b>Authentication</b></title>
+<p>
+<ul id="ul_g2s_smr_3gc">
+<li>
+<p><b>Authentication Required:</b> No</p>
+</li>
+<li>
+<p><b>Rate Limiting:</b> None for basic usage. For large-scale requests, contact <xref
+href="mailto:info@openlibrary.org" format="html" scope="external">info@openlibrary.org</xref></p>
+</li>
+</ul>
+</p>
+</section>
+<section id="section_v11_xmr_3gc">
+<title>3. <b>List of APIs</b></title>
+<ol id="ol_nxs_snr_3gc">
+<li>Search</li>
+<li>Author</li>
+</ol>
+</section>
+<section id="section_qph_bys_3gc">
+<title>4. <b>Endpoints</b></title>
+<p><b>4.1 Search</b></p>
+<p><b>Description:</b> Search books, authors, ISBN, category</p>
+  <p><b>Endpoint:</b> <codeblock>GET /search.json?q={query}</codeblock></p>
+</section>
+<p>
+<table frame="all" rowsep="1" colsep="1" id="table_gx3_wbt_3gc">
+<title>Parameters:</title>
+<tgroup cols="5">
+<colspec colnum="1" colname="c1" colwidth="1*"/>
+<colspec colnum="2" colname="newCol2" colwidth="1*"/>
+<colspec colnum="3" colname="c2" colwidth="1*"/>
+<colspec colnum="4" colname="newCol4" colwidth="1*"/>
+<colspec colnum="5" colname="newCol5" colwidth="1*"/>
+<thead>
+<row>
+<entry><b>Name</b></entry>
+<entry><b>Type</b></entry>
+<entry><b>Required</b></entry>
+<entry><b>Description</b></entry>
+<entry><b>Example</b></entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="center">q</entry>
+<entry align="center">string</entry>
+<entry align="center">Yes</entry>
+<entry align="center">Search</entry>
+<entry align="center">q=harry+potter</entry>
+</row>
+<row>
+<entry align="center">page</entry>
+<entry align="center">int</entry>
+<entry align="center">No</entry>
+<entry align="center">Page number</entry>
+<entry align="center">q=sapiens&amp;page=2</entry>
+</row>
+</tbody>
+</tgroup>
+</table>
+</p>
+<p><b>Example requests:</b></p>
+  <codeblock>https://openlibrary.org/search.json?q=harry+potter  </codeblock>
+  <codeblock>https://openlibrary.org/search.json?q=twain</codeblock>
+  <codeblock>https://openlibrary.org/search.json?q=science</codeblock>
+  <codeblock>https://openlibrary.org/search.json?q=9780385533225</codeblock>
+<p>
+<codeblock id="codeblock_dts_rdt_3gc">https://openlibrary.org/search.json?q=harry+potter&amp;page=1</codeblock>
+</p>
+<p><b>Example Response:</b></p>
+<codeblock outputclass="language-json">
+  {
+  "numFound": 245,
+  "start": 0,
+  "docs": [
+    {
+      "title": "Harry Potter and the Philosopher's Stone",
+      "author_name": ["J. K. Rowling"],
+      "first_publish_year": 1997,
+      "isbn": ["9780747532699"]
+    }
+  ]
+}
+</codeblock>
+<p><b>4.2 Authors</b></p>
+<p><b>Description:</b> Search author names by using search api</p>
+<p><b>Endpoint:</b>
+<codeph>GET /search/authors.json</codeph><table frame="all" rowsep="1" colsep="1"
+id="table_ffh_xft_3gc">
+<title>Parameters:</title>
+<tgroup cols="5">
+<colspec colnum="1" colname="newCol1" colwidth="1*"/>
+<colspec colnum="2" colname="newCol3" colwidth="1*"/>
+<colspec colnum="3" colname="newCol2" colwidth="1*"/>
+<colspec colnum="4" colname="c1" colwidth="1*"/>
+<colspec colnum="5" colname="c2" colwidth="1*"/>
+<tbody>
+<row>
+<entry align="center"><b>Name</b></entry>
+<entry align="center"><b>Type</b></entry>
+<entry align="center"><b>Required</b></entry>
+<entry align="center"><b>Description</b></entry>
+<entry align="center"><b>Example</b></entry>
+</row>
+<row>
+<entry align="center">q</entry>
+<entry align="center">string</entry>
+<entry align="center">Yes</entry>
+<entry align="center">Search(author)</entry>
+<entry align="center">q=twain</entry>
+</row>
+</tbody>
+</tgroup>
+</table></p>
+<p><b>Example requests:</b></p>
+<p>
+<codeblock id="codeblock_ynd_sgt_3gc">https://openlibrary.org/search/authors.json?q=j%20k%20rowling</codeblock>
+<codeblock id="codeblock_z1x_tgt_3gc">{
+  numFound: 1,
+  start: 0,
+  numFoundExact: true,
+  docs: [
+    {
+      key: "OL23919A",
+      text: [...],
+      type: "author",
+      name: "J. K. Rowling",
+      alternate_names: [...],
+      birth_date: "31 July 1965",
+      top_work: "Harry Potter and the Philosopher's Stone",
+      work_count: 162,
+      top_subjects: [...],
+      _version_: 1702166143068799000
+    },
+  ]
+}</codeblock>
+</p>
+<section id="section_a3t_pht_3gc">
+<title><b>5. Usage Guidelines</b></title>
+<p>
+<ol id="ol_dyx_sht_3gc">
+<li>Respect rate limits by adding delayed between large batches of request</li>
+<li>Attribute Open Library in your application</li>
+</ol>
+</p>
+</section>
+<section id="section_qhd_23t_3gc">
+<title><b>6. Error Handling</b></title>
+<p>
+<table frame="all" rowsep="1" colsep="1" id="table_vsx_23t_3gc">
+<tgroup cols="2">
+<colspec colnum="1" colname="c1" colwidth="1*"/>
+<colspec colnum="2" colname="c2" colwidth="1*"/>
+<thead>
+<row>
+<entry><b>Status Code</b></entry>
+<entry><b>Meaning</b></entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="center">200</entry>
+<entry align="center">Success</entry>
+</row>
+<row>
+<entry align="center">404</entry>
+<entry align="center">Not Found</entry>
+</row>
+<row>
+<entry align="center">500</entry>
+<entry align="center">Server Error</entry>
+</row>
+</tbody>
+</tgroup>
+</table>
+</p>
+</section>
+<section id="section_grk_53t_3gc">
+<title><b>7. Example Integration</b></title>
+<p><b>7.1 JavaScript</b></p>
+</section>
+<codeblock id="codeblock_qrh_1jt_3gc" outputclass="language-json">fetch("https://openlibrary.org/search.json?q=harry+potter")
+  .then(response => response.json())
+  .then(data => console.log(data.docs))
+  .catch(error => console.error(error));
+</codeblock>
+<p><b>7.2 Python</b></p>
+<codeblock id="codeblock_o1x_2jt_3gc" outputclass="language-python">#Request library
+
+import requests
+
+url = "https://openlibrary.org/search.json?q=harry+potter"
+
+response = requests.get(url)
+
+if response.status_code == 200:
+    data = response.json()
+    print(data["docs"])
+else:
+    print("Error:", response.status_code)
+</codeblock>
+<p><b>7.3
+Java</b><codeblock id="codeblock_ycl_tjt_3gc" outputclass="language-java">import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+
+public class OpenLibraryExample {
+    public static void main(String[] args) {
+        try {
+            String urlString = "https://openlibrary.org/search.json?q=harry+potter";
+            URL url = new URL(urlString);
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setRequestMethod("GET");
+
+            BufferedReader in = new BufferedReader(
+                    new InputStreamReader(conn.getInputStream()));
+            String inputLine;
+            StringBuilder content = new StringBuilder();
+
+            while ((inputLine = in.readLine()) != null) {
+                content.append(inputLine);
+            }
+
+            in.close();
+            conn.disconnect();
+
+            System.out.println(content.toString());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+}
+</codeblock></p>
+<p><b>7.4 PHP</b></p>
+<codeblock id="codeblock_g5n_xjt_3gc" outputclass="language-php">&lt;?php
+$url = "https://openlibrary.org/search.json?q=harry+potter";
+$response = file_get_contents($url);
+
+if ($response !== FALSE) {
+    $data = json_decode($response, true);
+    print_r($data["docs"]);
+} else {
+    echo "Error fetching data.";
+}
+?>
+</codeblock>
+<p><b>7.5  Node.js (Axios)</b></p>
+<codeblock id="codeblock_y3v_1kt_3gc">const axios = require("axios");
+
+axios.get("https://openlibrary.org/search.json?q=harry+potter")
+  .then(response => {
+    console.log(response.data.docs);
+  })
+  .catch(error => {
+    console.error(error);
+  });
+</codeblock>
+<section id="section_wd1_dkt_3gc">
+<title>8. References</title>
+<ol id="ol_krs_fkt_3gc">
+<li><xref href="https://openlibrary.org/developers/api" format="html" scope="external">Open Library
+API</xref></li>
+</ol>
+</section>  
 </body>
 
 </topic>
+<?oxy_options track_changes="on"?>
